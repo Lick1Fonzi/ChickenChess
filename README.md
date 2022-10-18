@@ -1,5 +1,5 @@
 # ChickenChess
-Progetto Tecnologie Web Unimore FIM
+Progetto Tecnologie Web Unimore FIM \
 Creazione sito web tramite Django framework
 
 # SetUp
