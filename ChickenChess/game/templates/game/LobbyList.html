@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block head %} <title>Games Lobby</title> {% endblock %} 
+{% block content %}
+
+<div class="container">
+    <h2>Games Lobby</h2>
+
+    <div>
+    <a href="{% url 'game:creategame'%}">
+    <button type="button" class="btn btn-dark" >Crea una nuova partita</button>
+    </a>
+    <button type="button" class="btn btn-dark" onClick="window.location.reload();">Refresh Lobby</button>
+    </div>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Inviting Player</th>
+          <th>Invited player</th>
+          <th>Time Mode</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in object_list %}
+          {% if p.invited == request.user.username or p.invited == "" %}
+        <tr>    
+            <td>{{ p.inviting }} as {{p.color_inviting}}</td>
+            <td>{{p.invited}}</td>
+            <td>{{p.time}} + {{p.increment}}</td>
+            <td>
+              <a href="{% url 'game:game' inviting=p.inviting color=p.color_inviting %}" ><button type="button" class="btn btn-dark">Play</button></a>
+            </td>
+        <tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+{% endblock %}

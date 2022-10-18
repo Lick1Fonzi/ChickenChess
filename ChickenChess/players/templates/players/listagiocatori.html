@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block head %} <title>Lista dei giocatori</title> {% endblock %} 
+{% block content %} 
+
+<div class="container">
+    <h2>Classifica giocatori</h2>
+  <!--<div>
+      <input type="text" class="form-control form-control">
+      <button type="button" class="btn btn-dark">Search</button>
+      </div>           
+  --> 
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Avatar</th>
+          <th>Username</th>
+          <th>Rating</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in object_list %}
+        <tr>    
+            <td>  <img src="{{p.profileimg.url}}" class="img-thumbnail" height="100" width="100">  </td>
+            <td><a href="{% url 'players:profile' p.pk %}">{{ p.username }}</a></td>
+            <td>{{p.rating}}</td>
+            
+        <tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div> 
+
+
+{% endblock %}

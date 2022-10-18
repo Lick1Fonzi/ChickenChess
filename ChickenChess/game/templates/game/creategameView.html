@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>  Create a new Public Game </title>
+{% load crispy_forms_tags %}
+{% endblock head %}
+
+{% block content %}
+<center>
+    <!--<h1>{{ view.form_class.description }}</h1>-->
+    <!--{{form | crispy}}-->
+    <!--{{form.as_p}}-->
+    <h1>Crea una nuova partita</h1><br>
+    <form method="POST">
+        {% csrf_token %}
+         <p>Select your color</p>
+         <select name="color_inviting" class="select" required="" id="id_color_inviting">
+             <option value="white">white</option>
+             <option value="black">black</option>
+         </select>
+        <p>Select time format (minutes)</p>
+        <input type="hidden" name="invited" id="id_invited" value="{{invited}}"> 
+         <input type="number" min="1" name="time" class="numberinput" required="" id="id_time">
+         <p>Select increment</p>
+         <input type="number" min="0" name="increment" class="numberinput" required="" id="id_increment">
+         <br><br>
+         <input type="submit" class="btn btn-success" value="Crea Partita">
+        
+    
+    </form>
+</center>
+{% endblock content %}

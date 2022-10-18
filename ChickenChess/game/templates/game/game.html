@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% load static %}
+
+{% endblock %}
+
+{% block content %}
+
+<style>
+    body{
+        background-image: url("{% static '/img/Home.jpg' %}"); background-size: cover;background-repeat: no-repeat;
+    }
+    .bg-image {
+          opacity: 0.5;
+        }
+</style>
+
+<script type="text/javascript">
+    var img_path = "{% static '/img' %}";
+    var time = {{time}};
+    var increment = {{increment}};
+    var othercolor = '';
+    var username = '{{request.user.username}}';
+
+    {% if color == white %}
+        othercolor = 'black';
+    {% else %}
+        othercolor = 'white';
+    {% endif %}
+
+
+    {% if request.user.username == inviting %}
+
+        var your_color = '{{color}}';
+        
+
+    {% else %}
+
+        var your_color = othercolor
+
+    {% endif %}
+</script>
+
+<!--Orologio Avversario-->
+<div class="container p-3 my-3 bg-dark text-white" style="width: 300px;">
+    <p id="Timer_opponent">{{time}}</p>
+    <p id="opp_name"></p>
+</div>
+
+<!--Scacchiera-->
+<div class="container">
+    <center>
+        <table id="chessboard" style='margin: 50px'>
+
+        </table>
+        <script src="{% static '/js/online_game.js' %}?t=12345"></script>
+    </center>
+</div>
+
+<!--Orologio Tuo-->
+<div class="container p-3 my-3 bg-dark text-white" style="width: 300px;">
+    <p id="Timer_your">{{time}}</p>
+    <p>{{request.user.username}}</p>
+</div>
+
+
+<!--Resign Button-->
+<div class="container" id="panel" >
+    <button type="button" class="btn btn-dark" id="resign" onclick="resign()">
+        Resign
+    </button>
+</div>
+
+
+
+{% endblock %}

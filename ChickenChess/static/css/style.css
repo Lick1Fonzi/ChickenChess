@@ -1,0 +1,9 @@
+body {
+  background-image: url("{% static '/img/Home.jpg' %}");
+  background-size: cover;
+}
+.bg-image {
+  opacity: 0.7;
+}
+
+

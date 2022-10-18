@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+    {% load static %}
+    <style
+    <link rel="stylesheet" href='{% static "/css/style.css"%}'>
+    </style> 
+
+<title>  ChickenChess partita  </title>
+
+{% endblock %}
+
+{% block content %}
+
+<style>
+body{
+    background-image: url("{% static '/img/Home.jpg' %}"); background-size: cover;background-repeat: no-repeat;
+}
+.bg-image {
+      opacity: 0.5;
+    }
+</style>
+
+{% for p in position.values %}
+        <p>{{p}}</p>
+{% endfor %}
+
+<script type="text/javascript">
+    var position = '{{position}}';
+    var moves = '{{moves}}';
+    var player_color = '{{player_color}}' 
+    console.log(position);
+    var path = "{% static '/img' %}";
+</script>
+
+
+
+<div class="container">
+    <center>
+        <table id="chessboard" style='margin: 50px'>
+
+        </table>
+        <script src="{% static '/js/offline_game.js' %}?t=123456"></script> <!--it has a dummy timestamp-->
+    </center>
+</div>
+
+
+<div class="container" id="panel">
+    <button type="button" class="btn btn-dark" id="resign" onclick="resign()">
+        Resign
+    </button>
+</div> 
+
+{% endblock %} 

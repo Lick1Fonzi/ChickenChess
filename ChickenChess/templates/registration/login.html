@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block head %}
+{% load crispy_forms_tags %}
+<title>Login</title>
+{% endblock %}
+{% block content %} 
+
+{% if 'notok' in request.GET.auth %}
+<div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Not Authorized</strong> You need to log in to access this chick!
+</div>
+{% endif %}
+
+<center>
+<form method="post"> {% csrf_token %}
+ {{form | crispy}}
+ 
+ <input type="submit" class="btn btn-success" value="Login">
+ 
+ </form>
+</center>
+{% endblock %}

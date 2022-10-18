@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>  ChickenChess Homepage  </title>
+{% load static %}
+
+<style
+    <link rel="stylesheet" href='{% static "/css/style.css"%}'>
+</style>
+{% endblock head %}
+
+{% block content %}
+
+
+{% if user.is_authenticated and 'ok' in request.GET.login %}
+<div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Success!</strong> You succesfully logged in!
+</div>
+{% endif %}
+
+
+<div class="jumbotron text-center">
+    <h1>Homepage</h1>
+    <p>ChickenChess</p> 
+</div>
+
+<center>
+    <form action="{% url 'partita'%}" method="GET">
+    <div class="form-check-inline">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="color" value="white" checked>White
+        </label>
+      </div>
+      <div class="form-check-inline">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="color" value="black">Black
+        </label>
+      </div>
+      <input type="submit" value="Play Stockfish">
+    </form>
+
+     <img src="{% static '/img/home.jpg' %}" class="rounded" alt="HomeIMG" width="1000" height="500">
+ </center>
+
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %} {{object.titolo}} {% endblock %} 
+{% block content %} 
+<h1>Aggiorna profilo di {{object.username}}</h1>
+<br>
+  <textarea></textarea>
+  <br>
+  <img src="{{object.profileimg.url}}" class="rounded-circle" height="100" width="100">
+
+{% endblock %}

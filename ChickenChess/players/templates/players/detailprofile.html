@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %} {{object.titolo}} {% endblock %} 
+{% block content %} 
+<h1>Profilo di {{object.username}}</h1>
+<br>
+<div>
+  <img src="{{object.profileimg.url}}" class="rounded-circle" height="100" width="100">
+
+ <li>Current rating: {{object.rating}}  </li>
+ <li>Highest rating: {{object.highest_rating}}  </li>
+ <li>Lowest rating: {{object.lowest_rating}}  </li>
+ <br>
+ <li>Partite Giocate: {{ object.victories|add:object.losses|add:object.draws}}</li>
+ <li>Victories: {{object.victories}}</li>
+ <li>Losses: {{object.losses}}</li>
+ <li>Draws: {{object.draws}}</li>
+
+  {% if request.user.pk != object.pk %}
+  <a href="{% url 'game:creategame' %}?invited={{object.username.username}}" ><button>Sfidalo ad una partita</button></a><br>
+  {% endif %}
+
+</div>
+
+ <div>
+  <h2>Partite giocate</h2>
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>White</th>
+        <th>Black</th>
+        <th>Outcome</th>
+        <th>Time</th>
+        <th>Increment</th>
+        <th>Moves</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in games %}
+      <tr>    
+          <td>{{p.White.username}}</td>
+          <td>{{ p.Black.username}}</td>
+          <td>{{p.outcome}}</td>
+          <td>{% widthratio p.time 60 1 %}</td>
+          <td>{{p.increment}}</td>
+          <td>{{p.moves}}</td>
+      <tr>
+      {% endfor %}
+    </tbody>
+  </table>
+ </div>
+{% endblock %}
+
