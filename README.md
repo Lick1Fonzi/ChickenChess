@@ -1,5 +1,6 @@
 # ChickenChess
 Progetto Tecnologie Web Unimore FIM
+Creazione sito web tramite Django framework
 
 # SetUp
 Install all necessary packages ( all listed in Pipfile ).
